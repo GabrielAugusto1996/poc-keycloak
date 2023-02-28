@@ -23,7 +23,7 @@ services:
       DB_PASSWORD: keycloak
     image: jboss/keycloak:13.0.0
     ports:
-      - "28080:8080"
+      - "8080:8080"
     restart: unless-stopped
     networks:
       - local-keycloak
