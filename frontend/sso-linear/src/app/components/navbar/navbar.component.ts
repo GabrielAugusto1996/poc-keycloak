@@ -22,12 +22,10 @@ export class NavbarComponent implements OnInit {
   }
 
   login() {
-    console.log("Login clicked!");
     this.oauthService.initCodeFlow();
   }
 
   logout() {
-    console.log("Logout clicked!");
     this.oauthService.logOut();
   }
 
