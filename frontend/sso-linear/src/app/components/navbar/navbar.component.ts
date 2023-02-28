@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JwksValidationHandler, OAuthService } from 'angular-oauth2-oidc';
+import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
 import { authCodeFlowConfig } from 'src/app/sso-config';
 
 @Component({
@@ -11,19 +11,14 @@ export class NavbarComponent implements OnInit {
 
   constructor(private oauthService: OAuthService) { }
 
-  name: string = "";
-
   ngOnInit(): void {
     this.configureSingleSignOn();
-
-    const userClaims: any = this.oauthService.getIdentityClaims();
-    this.name = userClaims.name ? userClaims.name : "";
   }
 
   configureSingleSignOn() {
     this.oauthService.configure(authCodeFlowConfig);
     this.oauthService.tokenValidationHandler = new JwksValidationHandler();
-    this.oauthService.loadDiscoveryDocument();
+    this.oauthService.loadDiscoveryDocumentAndTryLogin();
   }
 
   login() {
